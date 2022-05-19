@@ -12,10 +12,44 @@ h1 {
 .playingfield {
   width: 60vw;
   height: 75vh;
-  display: flex;
+  display: block;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+}
+.playingfield #deckcount {
+  color: gold;
+  font-size: xx-large;
+  margin: 3%;
+}
+
+button {
+  background-color: gold;
+  color: purple;
+  font-size: x-large;
+  border-radius: 15%;
+}
+
+button:hover {
+  background-color: purple;
+  color: gold;
+}
+
+button:disabled {
+  background-color: grey;
+  color: gold;
+}
+
+.gameArea {
+  display: flex;
+  color: gold;
+}
+.gameArea #pc {
+  float: right;
+}
+.gameArea #player {
+  float: left;
 }
 
 /*# sourceMappingURL=style.css.map */

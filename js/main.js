@@ -1,5 +1,4 @@
 //variable and array list
-
 const icons = ["spades", "diamonds", "clubs", "hearts"];
 const cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 let handPlayer = []
@@ -16,6 +15,15 @@ let pointsPc = 0;
 //let playerName = prompt("Please enter your name")
 //document.getElementById('name').innerHTML = playerName;
 
+//prompt to ask if player wants to play again
+/*let reset = prompt("Do you wanna play again? type yes to play again, type no to stop playing")
+if (reset !== "yes" && reset !== "no") {
+    prompt("Please answer with 'yes' or 'no' ")
+} else if (reset === "yes") {
+    location.reload();
+} else if (reset === "no") {
+    alert("Goodbye, thanks for playing");
+}*/
 
 //Making the deck
 makeDeck()
@@ -66,7 +74,7 @@ function dealTheHand() {
     console.log(cardPc);
     console.log(cardPc2);
 
-   updatePoints(); //Dont forget to enable!!!!!!!!!!!!!!!!!
+    updatePoints(); //Dont forget to enable!!!!!!!!!!!!!!!!!
     console.log(handPlayer);
     console.log(handPC);
     console.log(pointsPlayer);
@@ -75,59 +83,63 @@ function dealTheHand() {
 
 //function to add up de points
 
-function updatePoints(){
+function updatePoints() {
 
     //players jack/queen/knight and ACE value card 1
-    if (playerCard === "J" || playerCard === "Q" || playerCard === "K"){
+    if (playerCard === "J" || playerCard === "Q" || playerCard === "K") {
         playerCard = 10;
-    } else if(playerCard === "A"){
-        if (pointsPlayer <=10){
+    } else if (playerCard === "A") {
+        if (pointsPlayer <= 10) {
             playerCard = 11;
-        }else if (pointsPlayer >10){
+        } else if (pointsPlayer > 10) {
             playerCard = 1;
         }
     }
     //players jack/queen/knight and ACE value card 2
-    if (playerCard2 === "J" || playerCard2 === "Q" || playerCard2 === "K"){
+    if (playerCard2 === "J" || playerCard2 === "Q" || playerCard2 === "K") {
         playerCard2 = 10;
-    } else if(playerCard2 === "A"){
-        if (pointsPlayer <=10){
+    } else if (playerCard2 === "A") {
+        if (pointsPlayer <= 10) {
             playerCard2 = 11;
-        }else if (pointsPlayer >10){
+        } else if (pointsPlayer > 10) {
             playerCard2 = 1;
         }
     }
 
     // computers  jack/queen/knight and ACE value card 1
-    if (cardPc === "J" || cardPc === "Q" || cardPc === "K"){
+    if (cardPc === "J" || cardPc === "Q" || cardPc === "K") {
         cardPc = 10;
-    } else if(cardPc === "A"){
-        if (pointsPc <=10){
+    } else if (cardPc === "A") {
+        if (pointsPc <= 10) {
             cardPc = 11;
-        }else if (pointsPc >10){
+        } else if (pointsPc > 10) {
             cardPc = 1;
         }
     }
 
     // computers  jack/queen/knight and ACE value card 1
-    if (cardPc2 === "J" || cardPc2 === "Q" || cardPc2 === "K"){
+    if (cardPc2 === "J" || cardPc2 === "Q" || cardPc2 === "K") {
         cardPc2 = 10;
-    } else if(cardPc2 === "A"){
-        if (pointsPc <=10){
+    } else if (cardPc2 === "A") {
+        if (pointsPc <= 10) {
             cardPc2 = 11;
-        }else if (pointsPc >10){
+        } else if (pointsPc > 10) {
             cardPc2 = 1;
         }
     }
-    pointsPlayer =Number(playerCard) + Number(playerCard2);
+    pointsPlayer = Number(playerCard) + Number(playerCard2);
     pointsPc = Number(cardPc) + Number(cardPc2);
+    document.getElementById('pointsPlayer').innerHTML = pointsPlayer;
+    document.getElementById('pointspc').innerHTML = pointsPc;
 }
-
-
-
 
 
 //starting the game , pushing start activates following functions: make the deck , shuffle it, deal 2 cards to player and pc
 
 document.getElementById('start').addEventListener('click', shuffle);
 document.getElementById('start').addEventListener('click', dealTheHand);
+document.getElementById('start').addEventListener('click', disableStart);
+
+function disableStart() {
+    document.getElementById('start').setAttribute('disabled', 'disabled');
+}

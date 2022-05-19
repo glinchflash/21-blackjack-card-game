@@ -1,9 +1,14 @@
 .playingfield{
   width: 60vw;
   height: 75vh;
-  display: flex;
+  display: block;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-
+  text-align: center;
+  #deckcount{
+    color: gold;
+    font-size: xx-large;
+    margin: 3%;
+  }
 }

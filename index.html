@@ -8,23 +8,25 @@
 <body>
 <h1>BLACKJACK</h1>
 <div class="playingfield">
-    <div class="buttons">
-        <button id="start">Start playing!</button>
-        <button id="hitme">Hit me!</button>
-        <button id="stay">Stay</button>
+    <div class="gameArea">
+        <div id="player">
+            <p id="name"></p>
+            <p id="handplayer"></p>
+            <p id="pointsPlayer"></p>
+        </div>
+        <div id="pc">
+            <p>Computer</p>
+            <p id="handpc"></p>
+            <p id="pointspc"></p>
+        </div>
     </div>
     <div id="deck" class="deck">
         <div id="deckcount">52</div>
     </div>
-    <div id="player">
-        <p id="name"></p>
-        <p id="handplayer"></p>
-        <p id="pointsPlayer"></p>
-    </div>
-    <div id="pc">
-        <p>Computer</p>
-        <p id="handpc"></p>
-        <p id="pointspc"></p>
+    <div class="buttons">
+        <button id="start">Start playing!</button>
+        <button id="hitme">Hit me!</button>
+        <button id="stay">Stay</button>
     </div>
 </div>
 

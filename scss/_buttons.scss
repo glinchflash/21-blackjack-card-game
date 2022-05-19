@@ -1,0 +1,16 @@
+button{
+  background-color: gold;
+  color: purple;
+  font-size: x-large;
+  border-radius: 15%;
+}
+
+button:hover{
+  background-color: purple;
+  color: gold;
+}
+
+button:disabled{
+  background-color: grey;
+  color: gold;
+}
