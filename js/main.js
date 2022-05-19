@@ -37,3 +37,33 @@ function shuffle() {
 
     }
 }
+
+//dealing the first 2 cards to player and pc (removing them from deck)
+function dealTheHand() {
+    for (i = 0; i < 2; i++) {
+        card = deck.pop();
+        handPlayer.push(deck[Math.floor(Math.random() * deck.length - 1)])
+
+    }
+    for (x = 0; x < 2; x++) {
+        card = deck.pop();
+        handPC.push(deck[Math.floor(Math.random() * deck.length - 1)])
+    }
+    // updatepoints(); //Dont forget to enable!!!!!!!!!!!!!!!!!
+    console.log(handPlayer);
+    console.log(handPC);
+    console.log(deck.length);
+}
+
+//adding the 2 cards to the hand of player and pc
+function fillhand() {
+    handPlayer.push(card);
+    handPC.push(card);
+    //document.getElementById('handplayer').innerHTML = handPlayer;
+    //document.getElementById('handpc').innerHTML = handPC;
+}
+
+//starting the game , pushing start activates following functions: make the deck , shuffle it, deal 2 cards to player and pc
+//document.getElementById('start').addEventListener('click', makeDeck);
+document.getElementById('start').addEventListener('click', shuffle);
+document.getElementById('start').addEventListener('click', dealTheHand);
