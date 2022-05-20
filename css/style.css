@@ -52,4 +52,19 @@ button:disabled {
   float: left;
 }
 
+img {
+  height: 50%;
+  width: 50%;
+}
+
+.cardsPC {
+  display: flex;
+  margin: 3%;
+}
+
+.cardsplayer {
+  display: flex;
+  margin: 3%;
+}
+
 /*# sourceMappingURL=style.css.map */

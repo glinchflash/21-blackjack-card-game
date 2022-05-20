@@ -1,6 +1,6 @@
 //variable and array list
 const icons = ["spades", "diamonds", "clubs", "hearts"];
-const cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+const cards = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"];
 let handPlayer = []
 let handPC = []
 let deck = []
@@ -10,11 +10,22 @@ let playerCard3 = 0;
 let playerCard4 = 0;
 let playerCard5 = 0;
 let playerCard6 = 0;
+let playerIcon = "";
+let playerIcon2 = "";
+let playerIcon3 = "";
+let playerIcon4 = "";
+let playerIcon5= "";
+let playerIcon6 = "";
 let pointsPlayer = 0;
 let cardPc = 0;
 let cardPc2 = 0
 let cardPc3 = 0;
 let cardPc4 = 0;
+let cardIcon = "";
+let cardIcon2 = "";
+let cardIcon3 = "";
+let cardIcon4 = "";
+
 let pointsPc = 0;
 let clickcount = 0;
 //prompt to aks players name ENABLE!
@@ -57,9 +68,15 @@ function dealTheHand() {
         document.getElementById('deckcount').innerHTML = String(deck.length)
     }
     playerCard = handPlayer[0].amount;
+    playerIcon = handPlayer[0].icon;
     playerCard2 = handPlayer[1].amount;
+    playerIcon2 = handPlayer[1].icon;
     console.log(playerCard);
+    console.log(playerIcon);
     console.log(playerCard2);
+    console.log(playerIcon2);
+    document.getElementById('card1').src ="images/cards/" + playerCard +"_of_" + playerIcon + ".svg";
+    document.getElementById('card2').src ="images/cards/" + playerCard2 +"_of_" + playerIcon2 + ".svg";
 
     for (let x = 0; x < 2; x++) {
         deck.pop();
@@ -68,8 +85,15 @@ function dealTheHand() {
     }
     cardPc = handPC[0].amount;
     cardPc2 = handPC[1].amount;
+    cardIcon = handPC[0].icon;
+    cardIcon2 = handPC[1].icon;
     console.log(cardPc);
     console.log(cardPc2);
+    console.log(cardIcon);
+    console.log(cardIcon2);
+    document.getElementById('cardPc1').src ="images/cards/" + cardPc +"_of_" + cardIcon + ".svg";
+    document.getElementById('cardPc2').src ="images/cards/" + cardPc2 +"_of_" + cardIcon2 + ".svg";
+
 
     updatePoints(); //Dont forget to enable!!!!!!!!!!!!!!!!!
     console.log(handPlayer);
@@ -77,8 +101,10 @@ function dealTheHand() {
     console.log(pointsPlayer);
     console.log(pointsPc);
     if (pointsPlayer === 21) {
-        alert("Blackjack!!! You win!!!");
-        reset()
+       setTimeout(function (){
+           alert("Blackjack!!! You win!!!");
+           reset()
+       },5000)
     }
 }
 
@@ -87,9 +113,9 @@ function dealTheHand() {
 function updatePoints() {
 
     //players jack/queen/knight and ACE value card 1
-    if (playerCard === "J" || playerCard === "Q" || playerCard === "K") {
+    if (playerCard === "jack" || playerCard === "queen" || playerCard === "king") {
         playerCard = 10;
-    } else if (playerCard === "A") {
+    } else if (playerCard === "ace") {
         if (pointsPlayer <= 10) {
             playerCard = 11;
         } else if (pointsPlayer > 10) {
@@ -97,9 +123,9 @@ function updatePoints() {
         }
     }
     //players jack/queen/knight and ACE value card 2
-    if (playerCard2 === "J" || playerCard2 === "Q" || playerCard2 === "K") {
+    if (playerCard2 === "jack" || playerCard2 === "queen" || playerCard2 === "king") {
         playerCard2 = 10;
-    } else if (playerCard2 === "A") {
+    } else if (playerCard2 === "ace") {
         if (pointsPlayer <= 10) {
             playerCard2 = 11;
         } else if (pointsPlayer > 10) {
@@ -108,9 +134,9 @@ function updatePoints() {
     }
 
     // computers  jack/queen/knight and ACE value card 1
-    if (cardPc === "J" || cardPc === "Q" || cardPc === "K") {
+    if (cardPc === "jack" || cardPc === "queen" || cardPc === "king") {
         cardPc = 10;
-    } else if (cardPc === "A") {
+    } else if (cardPc === "ace") {
         if (pointsPc <= 10) {
             cardPc = 11;
         } else if (pointsPc > 10) {
@@ -119,9 +145,9 @@ function updatePoints() {
     }
 
     // computers  jack/queen/knight and ACE value card 1
-    if (cardPc2 === "J" || cardPc2 === "Q" || cardPc2 === "K") {
+    if (cardPc2 === "jack" || cardPc2 === "queen" || cardPc2 === "king") {
         cardPc2 = 10;
-    } else if (cardPc2 === "A") {
+    } else if (cardPc2 === "ace") {
         if (pointsPc <= 10) {
             cardPc2 = 11;
         } else if (pointsPc > 10) {
@@ -148,9 +174,9 @@ function hitMe() {
     //updating the points after receiving new card
     if (clickcount === 0) {
         clickcount++;
-        if (playerCard3 === "J" || playerCard3 === "Q" || playerCard3 === "K") {
+        if (playerCard3 === "jack" || playerCard3 === "queen" || playerCard3 === "king") {
             playerCard3 = 10;
-        } else if (playerCard3 === "A") {
+        } else if (playerCard3 === "ace") {
             if (pointsPlayer <= 10) {
                 playerCard3 = 11;
             } else if (pointsPlayer > 10) {
@@ -161,9 +187,9 @@ function hitMe() {
         console.log(playerCard3);
     } else if (clickcount === 1) {
         clickcount++;
-        if (playerCard4 === "J" || playerCard4 === "Q" || playerCard4 === "K") {
+        if (playerCard4 === "jack" || playerCard4 === "queen" || playerCard4 === "king") {
             playerCard4 = 10;
-        } else if (playerCard4 === "A") {
+        } else if (playerCard4 === "ace") {
             if (pointsPlayer <= 10) {
                 playerCard4 = 11;
             } else if (pointsPlayer > 10) {
@@ -173,9 +199,9 @@ function hitMe() {
         playerCard4 = handPlayer[3].amount;
     } else if (clickcount === 2) {
         clickcount++
-        if (playerCard5 === "J" || playerCard5 === "Q" || playerCard5 === "K") {
+        if (playerCard5 === "jack" || playerCard5 === "queen" || playerCard5 === "king") {
             playerCard5 = 10;
-        } else if (playerCard5 === "A") {
+        } else if (playerCard5 === "ace") {
             if (pointsPlayer <= 10) {
                 playerCard5 = 11;
             } else if (pointsPlayer > 10) {
@@ -185,9 +211,9 @@ function hitMe() {
         playerCard5 = handPlayer[4].amount;
     } else if (clickcount === 3) {
         clickcount++
-        if (playerCard6 === "J" || playerCard6 === "Q" || playerCard6 === "K") {
+        if (playerCard6 === "jack" || playerCard6 === "queen" || playerCard6 === "king") {
             playerCard6 = 10;
-        } else if (playerCard6 === "A") {
+        } else if (playerCard6 === "ace") {
             if (pointsPlayer <= 10) {
                 playerCard6 = 11;
             } else if (pointsPlayer > 10) {
@@ -230,9 +256,9 @@ function stay() {
         document.getElementById('deckcount').innerHTML = String(deck.length)
         cardPc3 = handPC[2].amount
         console.log(cardPc3);
-        if (cardPc3 === "J" || cardPc3 === "Q" || cardPc3 === "K") {
+        if (cardPc3 === "jack" || cardPc3 === "queen" || cardPc3 === "king") {
             cardPc3 = 10;
-        } else if (cardPc3 === "A") {
+        } else if (cardPc3 === "ace") {
             if (pointsPc <= 10) {
                 cardPc3 = 11;
             } else if (pointsPc > 10) {
@@ -248,9 +274,9 @@ function stay() {
         document.getElementById('deckcount').innerHTML = String(deck.length)
         cardPc4 = handPC[2].amount
         console.log(cardPc4);
-        if (cardPc4 === "J" || cardPc4 === "Q" || cardPc4 === "K") {
+        if (cardPc4 === "jack" || cardPc4 === "queen" || cardPc4 === "king") {
             cardPc4 = 10;
-        } else if (cardPc4 === "A") {
+        } else if (cardPc4 === "ace") {
             if (pointsPc <= 10) {
                 cardPc4 = 11;
             } else if (pointsPc > 10) {
@@ -287,6 +313,7 @@ function reset() {
     }
 }
 
+// function to get cards (images)
 
 //starting the game , pushing start activates following functions: make the deck , shuffle it, deal 2 cards to player and pc
 
