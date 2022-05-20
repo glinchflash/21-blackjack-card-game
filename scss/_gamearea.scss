@@ -1,10 +1,11 @@
 .gameArea {
-  display: flex;
+  display: block;
   color: gold;
   #pc{
     float: right;
   }
   #player{
     float: left;
+    text-align: left;
   }
 }

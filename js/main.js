@@ -1,11 +1,11 @@
 //variable and array list
-const icons = ["spades", "diamonds", "clubs", "hearts"];
-const cards = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"];
-let handPlayer = []
-let handPC = []
-let deck = []
+let icons = ["spades", "diamonds", "clubs", "hearts"];
+let cards = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"];
+let handPlayer = [];
+let handPC = [];
+let deck = [];
 let playerCard = 0;
-let playerCard2 = 0
+let playerCard2 = 0;
 let playerCard3 = 0;
 let playerCard4 = 0;
 let playerCard5 = 0;
@@ -14,11 +14,11 @@ let playerIcon = "";
 let playerIcon2 = "";
 let playerIcon3 = "";
 let playerIcon4 = "";
-let playerIcon5= "";
+let playerIcon5 = "";
 let playerIcon6 = "";
 let pointsPlayer = 0;
 let cardPc = 0;
-let cardPc2 = 0
+let cardPc2 = 0;
 let cardPc3 = 0;
 let cardPc4 = 0;
 let cardIcon = "";
@@ -34,7 +34,7 @@ let clickcount = 0;
 
 
 //Making the deck
-makeDeck()
+makeDeck();
 
 function makeDeck() {
     for (let i = 0; i < icons.length; i++) {
@@ -49,14 +49,11 @@ function makeDeck() {
 // shuffle the deck (500turns)
 //shuffle();
 function shuffle() {
-
     for (let i = deck.length - 1; i > 0; i--) {
         let x = Math.floor(Math.random() * i);
         let result = deck[i];
         deck[i] = deck[x];
         deck[x] = result;
-
-
     }
 }
 
@@ -64,48 +61,37 @@ function shuffle() {
 function dealTheHand() {
     for (let i = 0; i < 2; i++) {
         deck.pop();
-        handPlayer.push(deck[Math.floor(Math.random() * deck.length - 1)])
-        document.getElementById('deckcount').innerHTML = String(deck.length)
+        handPlayer.push(deck[Math.floor(Math.random() * deck.length - 1)]);
+        document.getElementById('deckcount').innerHTML = String(deck.length);
     }
     playerCard = handPlayer[0].amount;
     playerIcon = handPlayer[0].icon;
     playerCard2 = handPlayer[1].amount;
     playerIcon2 = handPlayer[1].icon;
-    console.log(playerCard);
-    console.log(playerIcon);
-    console.log(playerCard2);
-    console.log(playerIcon2);
-    document.getElementById('card1').src ="images/cards/" + playerCard +"_of_" + playerIcon + ".svg";
-    document.getElementById('card2').src ="images/cards/" + playerCard2 +"_of_" + playerIcon2 + ".svg";
+    //implement player cards
+    document.getElementById('card1').src = "images/cards/" + playerCard + "_of_" + playerIcon + ".svg";
+    document.getElementById('card1').style.visibility = "visible";
+    document.getElementById('card2').src = "images/cards/" + playerCard2 + "_of_" + playerIcon2 + ".svg";
+    document.getElementById('card2').style.visibility = "visible";
 
     for (let x = 0; x < 2; x++) {
         deck.pop();
-        handPC.push(deck[Math.floor(Math.random() * deck.length - 1)])
-        document.getElementById('deckcount').innerHTML = String(deck.length)
+        handPC.push(deck[Math.floor(Math.random() * deck.length - 1)]);
+        document.getElementById('deckcount').innerHTML = String(deck.length);
     }
     cardPc = handPC[0].amount;
     cardPc2 = handPC[1].amount;
     cardIcon = handPC[0].icon;
     cardIcon2 = handPC[1].icon;
-    console.log(cardPc);
-    console.log(cardPc2);
-    console.log(cardIcon);
-    console.log(cardIcon2);
-    document.getElementById('cardPc1').src ="images/cards/" + cardPc +"_of_" + cardIcon + ".svg";
-    document.getElementById('cardPc2').src ="images/cards/" + cardPc2 +"_of_" + cardIcon2 + ".svg";
+    //implement pc cards
+    document.getElementById('cardPc1').src = "images/cards/" + cardPc + "_of_" + cardIcon + ".svg";
+    document.getElementById('cardPc1').style.visibility = "visible";
+    document.getElementById('cardPc2').src = "images/cards/" + cardPc2 + "_of_" + cardIcon2 + ".svg";
+    document.getElementById('cardPc2').style.visibility = "visible";
 
 
-    updatePoints(); //Dont forget to enable!!!!!!!!!!!!!!!!!
-    console.log(handPlayer);
-    console.log(handPC);
-    console.log(pointsPlayer);
-    console.log(pointsPc);
-    if (pointsPlayer === 21) {
-       setTimeout(function (){
-           alert("Blackjack!!! You win!!!");
-           reset()
-       },5000)
-    }
+    updatePoints();
+
 }
 
 //function to add up de points
@@ -156,12 +142,15 @@ function updatePoints() {
     }
     if (pointsPlayer === 21) {
         alert("Blackjack!!! You win!!!");
-        reset()
+        reset();
     }
-    pointsPlayer = Number(playerCard) + Number(playerCard2);
-    pointsPc = Number(cardPc) + Number(cardPc2);
+    pointsPlayer += Number(playerCard);
+    pointsPlayer += Number(playerCard2);
+    pointsPc += Number(cardPc);
+    pointsPc += Number(cardPc2);
     document.getElementById('pointsPlayer').innerHTML = pointsPlayer;
     document.getElementById('pointspc').innerHTML = pointsPc;
+    declareWinner ();
 }
 
 // hit me up function
@@ -170,7 +159,7 @@ document.getElementById('hitme').addEventListener('click', hitMe);
 function hitMe() {
     deck.pop();
     handPlayer.push(deck[Math.floor(Math.random() * deck.length - 1)]);
-    document.getElementById('deckcount').innerHTML = String(deck.length)
+    document.getElementById('deckcount').innerHTML = String(deck.length);
     //updating the points after receiving new card
     if (clickcount === 0) {
         clickcount++;
@@ -184,7 +173,10 @@ function hitMe() {
             }
         }
         playerCard3 = handPlayer[2].amount;
-        console.log(playerCard3);
+        playerIcon3 = handPlayer[2].icon;
+        pointsPlayer += Number(playerCard3);
+        document.getElementById('card3').src = "images/cards/" + playerCard3 + "_of_" + playerIcon3 + ".svg";
+        document.getElementById('card3').style.visibility = "visible";
     } else if (clickcount === 1) {
         clickcount++;
         if (playerCard4 === "jack" || playerCard4 === "queen" || playerCard4 === "king") {
@@ -197,8 +189,12 @@ function hitMe() {
             }
         }
         playerCard4 = handPlayer[3].amount;
+        playerIcon4 = handPlayer[3].icon;
+        document.getElementById('card4').src = "images/cards/" + playerCard4 + "_of_" + playerIcon4 + ".svg";
+        document.getElementById('card4').style.visibility = "visible";
+        pointsPlayer += Number(playerCard4);
     } else if (clickcount === 2) {
-        clickcount++
+        clickcount++;
         if (playerCard5 === "jack" || playerCard5 === "queen" || playerCard5 === "king") {
             playerCard5 = 10;
         } else if (playerCard5 === "ace") {
@@ -209,8 +205,12 @@ function hitMe() {
             }
         }
         playerCard5 = handPlayer[4].amount;
+        playerIcon5 = handPlayer[4].icon;
+        document.getElementById('card5').src = "images/cards/" + playerCard5 + "_of_" + playerIcon5 + ".svg";
+        document.getElementById('card5').style.visibility = "visible";
+        playerCard6 = handPlayer[5].amount;
     } else if (clickcount === 3) {
-        clickcount++
+        clickcount++;
         if (playerCard6 === "jack" || playerCard6 === "queen" || playerCard6 === "king") {
             playerCard6 = 10;
         } else if (playerCard6 === "ace") {
@@ -220,29 +220,18 @@ function hitMe() {
                 playerCard6 = 1;
             }
         }
-        playerCard6 = handPlayer[5].amount;
+
+        document.getElementById('card6').src = "images/cards/" + playerCard6 + "_of_" + playerIcon6 + ".svg";
+        document.getElementById('card6').style.visibility = "visible";
+        playerIcon6 = handPlayer[5].icon;
     }
 
-    console.log(handPlayer);
-    console.log(playerCard4);
-    console.log(playerCard4);
-    console.log(playerCard4);
-    console.log(playerCard4);
-    pointsPlayer += Number(playerCard3);
-    pointsPlayer += Number(playerCard4);
+
+
     pointsPlayer += Number(playerCard5);
     pointsPlayer += Number(playerCard6);
-    console.log(pointsPlayer);
     document.getElementById('pointsPlayer').innerHTML = pointsPlayer;
-    if (pointsPlayer === 21) {
-        alert("Blackjack!!! You win!!!");
-        console.log(pointsPlayer);
-        reset()
-    } else if (pointsPlayer > 21) {
-        alert("Busted! You lose.");
-        console.log(pointsPlayer);
-        reset()
-    }
+    winner()
 }
 
 
@@ -250,11 +239,15 @@ function hitMe() {
 document.getElementById('stay').addEventListener('click', stay);
 
 function stay() {
+
     if (pointsPc < pointsPlayer && pointsPc < 17) {
         deck.pop();
         handPC.push(deck[Math.floor(Math.random() * deck.length - 1)]);
-        document.getElementById('deckcount').innerHTML = String(deck.length)
-        cardPc3 = handPC[2].amount
+        document.getElementById('deckcount').innerHTML = String(deck.length);
+        cardPc3 = handPC[2].amount;
+        cardIcon3 = handPC[2].icon;
+        document.getElementById('cardPc3').src = "images/cards/" + cardPc3 + "_of_" + cardIcon3 + ".svg";
+        document.getElementById('cardPc3').style.visibility = "visible";
         console.log(cardPc3);
         if (cardPc3 === "jack" || cardPc3 === "queen" || cardPc3 === "king") {
             cardPc3 = 10;
@@ -265,14 +258,15 @@ function stay() {
                 cardPc3 = 1;
             }
         }
+
     }
     pointsPc += Number(cardPc3);
     document.getElementById('pointspc').innerHTML = pointsPc;
     if (pointsPc < pointsPlayer && pointsPc < 17) {
         deck.pop();
         handPC.push(deck[Math.floor(Math.random() * deck.length - 1)]);
-        document.getElementById('deckcount').innerHTML = String(deck.length)
-        cardPc4 = handPC[2].amount
+        document.getElementById('deckcount').innerHTML = String(deck.length);
+        cardPc4 = handPC[2].amount;
         console.log(cardPc4);
         if (cardPc4 === "jack" || cardPc4 === "queen" || cardPc4 === "king") {
             cardPc4 = 10;
@@ -283,38 +277,67 @@ function stay() {
                 cardPc4 = 1;
             }
         }
+        document.getElementById('cardPc4').src = "images/cards/" + cardPc4 + "_of_" + cardIcon4 + ".svg";
+        document.getElementById('cardPc4').style.visibility = "visible";
     }
     pointsPc += Number(cardPc4);
     console.log(pointsPc);
     document.getElementById('pointspc').innerHTML = pointsPc;
-    if (pointsPc > pointsPlayer && pointsPc <= 21) {
-        alert("Dealer wins! You lose.");
-        reset();
-    } else if (pointsPc < pointsPlayer && pointsPc >= 17) {
-        alert("You win!");
-        reset()
-    } else if (pointsPc > 21) {
-        alert("You win!");
-        reset();
-    }
+    winner()
 }
 
 //reset function
 
 function reset() {
-    let reset = prompt("Do you wanna play again? type yes to play again, type no to stop playing")
+    let reset = prompt("Do you wanna play again? type yes to play again, type no to stop playing");
     if (reset !== "yes" && reset !== "no") {
-        prompt("Please answer with 'yes' or 'no' ")
+        prompt("Please answer with 'yes' or 'no' ");
     } else if (reset === "yes") {
         location.reload();
-        document.getElementById('start').disabled = false;
     } else if (reset === "no") {
         alert("Goodbye, thanks for playing");
     }
 }
 
-// function to get cards (images)
+//declare winner function at Dealing
 
+function declareWinner() {
+    if (pointsPlayer === 21){
+        alert("Blackjack!!! You win!!");
+        reset();
+    }
+    if (pointsPc === 21){
+        alert("Dealer wins!! You lose.");
+        reset();
+    }
+}
+
+// declare winner after hit me
+
+function winner() {
+    if (pointsPc > pointsPlayer && pointsPc <= 21) {
+
+        alert("Dealer wins! You lose.");
+        reset();
+
+
+    }
+    else if (pointsPlayer === pointsPc){
+        alert("Dealer wins! You lose.");
+        reset();
+    }
+    if (pointsPc < pointsPlayer && pointsPc >= 17) {
+
+        alert("You win!");
+        reset();
+
+    } else if (pointsPc > 21) {
+
+        alert("You win!");
+        reset();
+
+    }
+}
 //starting the game , pushing start activates following functions: make the deck , shuffle it, deal 2 cards to player and pc
 
 document.getElementById('start').addEventListener('click', shuffle);
